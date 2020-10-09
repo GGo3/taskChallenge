@@ -23,12 +23,11 @@ const clearArr = (arr) => {
 clearArr(boardColumns);
 
 //**************** 3) функция подсчета ненулевых(непустых) клеток во всём массиве ****************
-
+let clearValue = 0;
 const checkArr = (arrCheck) => {
-  let clearValue = 0;
   for (let i = 0; i < arrCheck.length; i++) {
     for (let k = 0; k < arrCheck[i].length; k++) {
-      if (arrCheck[i][k] == null){
+      if (arrCheck[i][k] !== null){
         clearValue++;
       }
     }
@@ -38,7 +37,24 @@ const checkArr = (arrCheck) => {
 
 checkArr(boardColumns);
 
+//**************** 4) функция отображения на странице игрового поле(клетки массива) и строка статуса, в которой написано количество ненулевых клеток. Нулевые клетки закрашены белым цветом.
 
+const mainEl = document.querySelector('.main');
+let str = '';
 
-console.table(boardColumns);
+const createBoard = (arrBoard) => {
+  for (let i = 0; i < arrBoard.length; i++) {
+    for (let k = 0; k < arrBoard[i].length; k++) {
+      if (arrBoard[i][k] !== null){
+        str = `${str}<div class="defolts_cells black"></div>`;
+      } else {
+        str = `${str}<div class="defolts_cells white"></div>`;
+      }
+    }
+  }
+  str = `${str}<div class="status">${clearValue}</div>`;
+  mainEl.innerHTML = str;
+};
+
+createBoard(boardColumns);
 
