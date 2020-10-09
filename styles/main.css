@@ -1,0 +1,117 @@
+@font-face {
+  font-family: 'fontello';
+  src: url("../fonts/fontello.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+html {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
+}
+
+@-webkit-keyframes spin {
+  100% {
+    -webkit-transform: rotate(365deg);
+            transform: rotate(365deg);
+  }
+}
+
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(365deg);
+            transform: rotate(365deg);
+  }
+}
+
+.timer__inner {
+  width: 280px;
+  height: 250px;
+  margin: 200px auto;
+  padding: 45px;
+}
+
+.timer__main {
+  position: relative;
+  width: 190px;
+  height: 80px;
+  border: 1px solid black;
+}
+
+.timer__main-clock {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 58px;
+  padding-top: 5px;
+}
+
+.timer__clock-animation {
+  -webkit-animation: clock 2s infinite linear;
+          animation: clock 2s infinite linear;
+}
+
+@-webkit-keyframes clock {
+  50% {
+    color: red;
+  }
+}
+
+@keyframes clock {
+  50% {
+    color: red;
+  }
+}
+
+.timer-btn {
+  width: 190px;
+  height: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+}
+
+input {
+  width: 85px;
+  height: 35px;
+  padding-left: 10px;
+}
+
+button {
+  width: 85px;
+  height: 35px;
+  margin-right: 0px;
+}
+
+button::before {
+  content: '\e800';
+  font-family: 'fontello';
+}
+
+.arrow {
+  position: absolute;
+  right: 5px;
+  top: 23px;
+}
+
+.arrow::after {
+  content: '\e832';
+  font-family: 'fontello';
+  font-size: 32px;
+}
+
+.animate-spin {
+  -webkit-animation: spin 2s infinite linear;
+          animation: spin 2s infinite linear;
+}
+/*# sourceMappingURL=main.css.map */
