@@ -23,6 +23,7 @@ const clearArr = (arr) => {
 clearArr(boardColumns);
 
 //**************** 3) функция подсчета ненулевых(непустых) клеток во всём массиве ****************
+
 let clearValue = 1;
 const checkArr = (arrCheck) => {
   clearValue = 0;
@@ -34,8 +35,6 @@ const checkArr = (arrCheck) => {
     }
   }
 };
-
-
 
 //**************** 4) функция отображения на странице игрового поле(клетки массива) и строка статуса, в которой написано количество ненулевых клеток. Нулевые клетки закрашены белым цветом.
 
@@ -58,87 +57,54 @@ const createBoard = (arrBoard) => {
   mainEl.innerHTML = str;
 };
 
-
+let currentPosition=[0, 0];
+boardColumns[currentPosition[0]][currentPosition[1]] = 1;
+createBoard(boardColumns);
+console.table(boardColumns);
 
 
 // 6) сделай управление мышкой и клавиатурой, там где находится курсор (курсор- это любая клетка поля), закрашиваем клетку синим цветом. Первоначальное положение курсора в левом верхнем углу. В массиве, в соответствующую ячейку писать "1". Уход с клетки возвращает значение null;
 
-const moveForward = document.querySelector('.forward');
-const moveBackward = document.querySelector('.backward');
+const moveUp = document.querySelector('.up');
+const moveDown = document.querySelector('.down');
 const moveLeft = document.querySelector('.left');
 const moveRight = document.querySelector('.right');
-let q = 0;
-let r = 0;
-boardColumns[q][r] = 1;
-createBoard(boardColumns);
 
-const moveChangeCells = (event) => {
-  if (event.code == 'ArrowUp' && q !=0) {
-    clearArr(boardColumns);
-    q--;
-    boardColumns[q][r] = 1; 
-    createBoard(boardColumns);
-    checkArr(boardColumns);
-  } else if (event.code == 'ArrowDown' && q !=4) {
-    clearArr(boardColumns);
-    q++;
-    boardColumns[q][r] = 1;
-    createBoard(boardColumns);
-    checkArr(boardColumns);
-  } else if (event.code == 'ArrowLeft' && r !=0) {
-    clearArr(boardColumns);
-    r--;
-    boardColumns[q][r] = 1;
-    createBoard(boardColumns);
-    checkArr(boardColumns);
-  } else if (event.code == 'ArrowRight' && r !=4) {
-    clearArr(boardColumns);
-    r++;
-    boardColumns[q][r] = 1;
-    createBoard(boardColumns);
-    checkArr(boardColumns);
-  }
+
+const moveCell = (x, y) => {
+  clearArr(boardColumns);
+  boardColumns[currentPosition[0] + x][currentPosition[1] + y] = 1;
+  currentPosition[0] += x;
+  currentPosition[1] += y;
+  createBoard(boardColumns);
   checkArr(boardColumns);
-  console.table(boardColumns);
+};
+
+const moveCellUp = () => moveCell(-1, 0);
+const moveCellDown = () => moveCell(1, 0);
+const moveCellLeft = () => moveCell(0, -1);
+const moveCellRight = () => moveCell(0, 1);
+
+moveDown.addEventListener('click', moveCellDown);
+moveUp.addEventListener('click', moveCellUp);
+moveLeft.addEventListener('click', moveCellLeft);
+moveRight.addEventListener('click', moveCellRight);
+
+const handleKeyboard = (t) => {
+  t = t || window.event;
+  switch (t.keyCode) {
+    case 38:
+      moveCellUp();
+      break;
+    case 40:
+      moveCellDown();
+      break;
+    case 37:
+      moveCellLeft();
+      break;
+    case 39:
+      moveCellRight();
+      break;
+  }
 }
-document.addEventListener('keydown', moveChangeCells);
-
-
-moveForward.addEventListener('click', moveForwardCells = () => {
-  if (q != 0) {
-    clearArr(boardColumns);
-    q--;
-    boardColumns[q][r] = 1; 
-    createBoard(boardColumns);
-    checkArr(boardColumns);
-  }
-});
-moveBackward.addEventListener('click', moveBackwardCells = () => {
-  if (q != 4) {
-    clearArr(boardColumns);
-    q++;
-    boardColumns[q][r] = 1; 
-    createBoard(boardColumns);
-    checkArr(boardColumns);
-  }
-});
-moveLeft.addEventListener('click', moveLeftCells = () => {
-  if (q != 0) {
-    clearArr(boardColumns);
-    r--;
-    boardColumns[q][r] = 1; 
-    createBoard(boardColumns);
-    checkArr(boardColumns);
-  }
-});
-moveRight.addEventListener('click', moveRightCells = () => {
-  if (q != 4) {
-    clearArr(boardColumns);
-    r++;
-    boardColumns[q][r] = 1; 
-    createBoard(boardColumns);
-    checkArr(boardColumns);
-  }
-});
-
-
+document.addEventListener('keydown', handleKeyboard);

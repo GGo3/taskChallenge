@@ -44,12 +44,12 @@ html {
   position: absolute;
 }
 
-.forward {
+.up {
   top: 10%;
   left: 50%;
 }
 
-.backward {
+.down {
   top: 40%;
   left: 50%;
 }
