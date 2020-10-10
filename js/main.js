@@ -58,3 +58,4 @@ const createBoard = (arrBoard) => {
 
 createBoard(boardColumns);
 
+// 5) покажи на странице 4 кнопки-стрелки: "вверх", "вниз", "влево", "вправо"

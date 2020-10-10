@@ -7,13 +7,49 @@ html{
 .main {
   position: absolute;
   top: 10%;
-  left: 20%;
+  left: 10%;
   width: 500px;
   height: 500px;
   display: flex;
   flex-wrap: wrap;
 }
-
+.move-btns {
+  position: absolute;
+  top: 35%;
+  left: 60%;
+  width: 200px;
+  height: 200px;
+}
+.btns-inner{
+  position: relative;
+  width: 200px;
+  height: 200px;
+  
+}
+.btns{
+  display: block;
+  width: 50px;
+  height: 50px;
+  border-radius: 3px;
+  font-size: 24px;
+  position: absolute;
+}
+.forward{
+  top: 10%;
+  left: 50%;
+}
+.backward{
+  top: 40%;
+  left: 50%;
+}
+.left{
+  top: 40%;
+  left: 20%;
+}
+.right{
+  top: 40%;
+  left: 80%;
+}
 
 .defolts_cells {
   width: 100px;
