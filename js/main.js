@@ -43,10 +43,11 @@ const mainEl = document.querySelector('.main');
 let str = '';
 
 const createBoard = (arrBoard) => {
+  mainEl.innerHTML = '';
   for (let i = 0; i < arrBoard.length; i++) {
     for (let k = 0; k < arrBoard[i].length; k++) {
       if (arrBoard[i][k] !== null){
-        str = `${str}<div class="defolts_cells black"></div>`;
+        str = `${str}<div class="defolts_cells blue"></div>`;
       } else {
         str = `${str}<div class="defolts_cells white"></div>`;
       }
@@ -56,6 +57,47 @@ const createBoard = (arrBoard) => {
   mainEl.innerHTML = str;
 };
 
+
+
+
+// 6) сделай управление мышкой и клавиатурой, там где находится курсор (курсор- это любая клетка поля), закрашиваем клетку синим цветом. Первоначальное положение курсора в левом верхнем углу. В массиве, в соответствующую ячейку писать "1". Уход с клетки возвращает значение null;
+
+const moveForward = document.querySelector('.forward');
+const moveBackward = document.querySelector('.backward');
+const moveLeft = document.querySelector('.left');
+const moveRight = document.querySelector('.right');
+let q = 0;
+let r = 0;
+boardColumns[q][r] = 1;
 createBoard(boardColumns);
 
-// 5) покажи на странице 4 кнопки-стрелки: "вверх", "вниз", "влево", "вправо"
+const moveChangeCells = (event) => {
+  if (event.code == 'ArrowUp' && q !=0) {
+    clearArr(boardColumns);
+    q--;
+    boardColumns[q][r] = 1;
+    
+    createBoard(boardColumns);
+  } else if (event.code == 'ArrowDown' && q !=4) {
+    clearArr(boardColumns);
+    q++;
+    boardColumns[q][r] = 1;
+    
+    createBoard(boardColumns);
+    
+  } else if (event.code == 'ArrowLeft' && r !=0) {
+    clearArr(boardColumns);
+    r--;
+    boardColumns[q][r] = 1;
+    createBoard(boardColumns);
+  } else if (event.code == 'ArrowRight' && r !=4) {
+    clearArr(boardColumns);
+    r++;
+    boardColumns[q][r] = 1;
+    createBoard(boardColumns);
+  }
+  console.table(boardColumns);
+}
+document.addEventListener('keydown', moveChangeCells);
+
+
