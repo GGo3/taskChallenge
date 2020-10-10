@@ -23,8 +23,9 @@ const clearArr = (arr) => {
 clearArr(boardColumns);
 
 //**************** 3) функция подсчета ненулевых(непустых) клеток во всём массиве ****************
-let clearValue = 0;
+let clearValue = 1;
 const checkArr = (arrCheck) => {
+  clearValue = 0;
   for (let i = 0; i < arrCheck.length; i++) {
     for (let k = 0; k < arrCheck[i].length; k++) {
       if (arrCheck[i][k] !== null){
@@ -32,10 +33,9 @@ const checkArr = (arrCheck) => {
       }
     }
   }
-  console.log(clearValue);
 };
 
-checkArr(boardColumns);
+
 
 //**************** 4) функция отображения на странице игрового поле(клетки массива) и строка статуса, в которой написано количество ненулевых клеток. Нулевые клетки закрашены белым цветом.
 
@@ -78,25 +78,67 @@ const moveChangeCells = (event) => {
     q--;
     boardColumns[q][r] = 1; 
     createBoard(boardColumns);
+    checkArr(boardColumns);
   } else if (event.code == 'ArrowDown' && q !=4) {
     clearArr(boardColumns);
     q++;
     boardColumns[q][r] = 1;
     createBoard(boardColumns);
-    
+    checkArr(boardColumns);
   } else if (event.code == 'ArrowLeft' && r !=0) {
     clearArr(boardColumns);
     r--;
     boardColumns[q][r] = 1;
     createBoard(boardColumns);
+    checkArr(boardColumns);
   } else if (event.code == 'ArrowRight' && r !=4) {
     clearArr(boardColumns);
     r++;
     boardColumns[q][r] = 1;
     createBoard(boardColumns);
+    checkArr(boardColumns);
   }
+  checkArr(boardColumns);
   console.table(boardColumns);
 }
 document.addEventListener('keydown', moveChangeCells);
+
+
+moveForward.addEventListener('click', moveForwardCells = () => {
+  if (q != 0) {
+    clearArr(boardColumns);
+    q--;
+    boardColumns[q][r] = 1; 
+    createBoard(boardColumns);
+    checkArr(boardColumns);
+  }
+});
+moveBackward.addEventListener('click', moveBackwardCells = () => {
+  if (q != 4) {
+    clearArr(boardColumns);
+    q++;
+    boardColumns[q][r] = 1; 
+    createBoard(boardColumns);
+    checkArr(boardColumns);
+  }
+});
+moveLeft.addEventListener('click', moveLeftCells = () => {
+  if (q != 0) {
+    clearArr(boardColumns);
+    r--;
+    boardColumns[q][r] = 1; 
+    createBoard(boardColumns);
+    checkArr(boardColumns);
+  }
+});
+moveRight.addEventListener('click', moveRightCells = () => {
+  if (q != 4) {
+    clearArr(boardColumns);
+    r++;
+    boardColumns[q][r] = 1; 
+    createBoard(boardColumns);
+    checkArr(boardColumns);
+  }
+});
 
 
