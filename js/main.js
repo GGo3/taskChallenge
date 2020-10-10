@@ -43,6 +43,7 @@ const mainEl = document.querySelector('.main');
 let str = '';
 
 const createBoard = (arrBoard) => {
+  let str = '';
   mainEl.innerHTML = '';
   for (let i = 0; i < arrBoard.length; i++) {
     for (let k = 0; k < arrBoard[i].length; k++) {
@@ -75,14 +76,12 @@ const moveChangeCells = (event) => {
   if (event.code == 'ArrowUp' && q !=0) {
     clearArr(boardColumns);
     q--;
-    boardColumns[q][r] = 1;
-    
+    boardColumns[q][r] = 1; 
     createBoard(boardColumns);
   } else if (event.code == 'ArrowDown' && q !=4) {
     clearArr(boardColumns);
     q++;
     boardColumns[q][r] = 1;
-    
     createBoard(boardColumns);
     
   } else if (event.code == 'ArrowLeft' && r !=0) {
